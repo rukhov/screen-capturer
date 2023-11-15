@@ -7,7 +7,7 @@ MainWindow::MainWindow(Controller& controller)
     , m_controller(controller)
     , m_startStopButton(this)
 {
-    auto layout = new QGridLayout(this);
+    auto layout = new QGridLayout(centralWidget());
 
     layout->addWidget(&m_startStopButton, 0, 0);
 

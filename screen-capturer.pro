@@ -19,7 +19,8 @@ HEADERS += \
     DataBase.h \
     captureworker.h \
     controller.h \
-    mainwindow.h
+    mainwindow.h \
+    screenshot.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

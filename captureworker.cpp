@@ -1,11 +1,25 @@
 #include "captureworker.h"
 
 #include <QtWidgets>
+#include <QCryptographicHash>
 
-CaptureWorker::CaptureWorker(QObject *parent)
-    : QObject(parent)
+namespace
 {
-    m_timer.moveToThread(thread());
+    QString imageHash(const QImage& image)
+    {
+        return "";
+    }
+
+    float imagesSimilarity(const QImage& image1, const QImage& image2)
+    {
+        return 0;
+    }
+}
+
+CaptureWorker::CaptureWorker()
+    : QObject(nullptr)
+    , m_timer(this)
+{
     connect(&m_timer, &QTimer::timeout, this, &CaptureWorker::onTimer);
 }
 
@@ -16,6 +30,7 @@ CaptureWorker::~CaptureWorker()
 
 void CaptureWorker::Start()
 {
+    m_timer.moveToThread(QThread::currentThread());
     m_timer.start(1000);
 }
 
@@ -25,7 +40,13 @@ void CaptureWorker::onTimer()
 
     Q_ASSERT(screen);
 
-    auto pixmap = screen->grabWindow(0);
+    ScreenShot shot;
 
-    //pixmap.
+    shot.image = screen->grabWindow(0).toImage();
+    shot.hash = imageHash(shot.image);
+    shot.similarity = imagesSimilarity(shot.image, m_prevImage);
+
+    m_prevImage = shot.image;
+
+    emit NewScreenshotCaptured(shot);
 }

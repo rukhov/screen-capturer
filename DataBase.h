@@ -1,16 +1,22 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#include <memory>
+#include "screenshot.h"
+
+#include <QSqlDatabase>
 
 class DataBase
 {
+    QSqlDatabase m_db;
+
 public:
 
     DataBase();
 
     // can throw
     void Connect();
+
+    void AddScreenShot(const ScreenShot& shot);
 };
 
 

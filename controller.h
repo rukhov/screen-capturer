@@ -25,9 +25,10 @@ signals:
 
 private slots:
 
-    void OnCaptureWorkerError(QString err);
+    void onCaptureWorkerError(QString err);
     void onStarted();
     void onFinished();
+    void onNewScreenshotCaptured(const ScreenShot& shot);
 
 };
 

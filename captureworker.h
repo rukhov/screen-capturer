@@ -1,7 +1,7 @@
 #ifndef CAPTUREWORKER_H
 #define CAPTUREWORKER_H
 
-#include <QObject>
+#include "screenshot.h"
 #include <QTimer>
 
 class CaptureWorker : public QObject
@@ -9,9 +9,10 @@ class CaptureWorker : public QObject
     Q_OBJECT
 
     QTimer m_timer;
+    QImage m_prevImage;
 
 public:
-    explicit CaptureWorker(QObject *parent);
+    explicit CaptureWorker();
     ~CaptureWorker();
 
 public slots:
@@ -22,7 +23,7 @@ public slots:
 signals:
 
     void Error(QString err);
-    void NewScreenshotCaptured();
+    void NewScreenshotCaptured(const ScreenShot& shot);
 };
 
 #endif // CAPTUREWORKER_H
