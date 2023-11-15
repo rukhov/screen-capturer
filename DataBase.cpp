@@ -1,19 +1,11 @@
 #include "DataBase.h"
 
-class DataBase : public IDataBase
+DataBase::DataBase()
 {
-public:
 
-    // IDataBase
-private:
+}
 
-    void Connect() override
-    {
-
-    }
-};
-
-std::unique_ptr<IDataBase> MakeDataBase()
+void DataBase::Connect()
 {
-    return std::make_unique<DataBase>();
+
 }

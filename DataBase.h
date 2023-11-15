@@ -3,14 +3,15 @@
 
 #include <memory>
 
-class IDataBase
+class DataBase
 {
 public:
-    virtual ~IDataBase() = default;
 
-    virtual void Connect() = 0;
+    DataBase();
+
+    // can throw
+    void Connect();
 };
 
-std::unique_ptr<IDataBase> MakeDataBase();
 
 #endif // DATABASE_H

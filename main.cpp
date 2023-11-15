@@ -7,11 +7,17 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    Controller controller;
+    int retVal = -1;
 
-    MainWindow w(controller);
+    {
+        Controller controller;
 
-    w.show();
+        MainWindow w(controller);
 
-    return a.exec();
+        w.show();
+
+        retVal = a.exec();
+    }
+
+    return retVal;
 }
