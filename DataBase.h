@@ -15,8 +15,8 @@ public:
 
     // can throw
     void Connect();
-
     void AddScreenShot(const ScreenShot& shot);
+    QByteArray GetLastCapturedImage();
 };
 
 

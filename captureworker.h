@@ -12,7 +12,7 @@ class CaptureWorker : public QObject
     QImage m_prevImage;
 
 public:
-    explicit CaptureWorker();
+    CaptureWorker(QByteArray&& prevPngImage);
     ~CaptureWorker();
 
 public slots:

@@ -22,7 +22,7 @@ void Controller::StartStopCapturing(bool bStart)
 
     if(bStart)
     {
-        auto worker = new CaptureWorker();
+        auto worker = new CaptureWorker(m_dataBase.GetLastCapturedImage());
 
         connect( worker, &CaptureWorker::Error, this, &Controller::onCaptureWorkerError);
         connect( worker, &CaptureWorker::NewScreenshotCaptured, this, &Controller::onNewScreenshotCaptured);
@@ -62,4 +62,5 @@ void Controller::onCaptureWorkerError(QString err)
 void Controller::onNewScreenshotCaptured(const ScreenShot& shot)
 {
     m_dataBase.AddScreenShot(shot);
+    emit DataBaseUpdated();
 }

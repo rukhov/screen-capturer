@@ -22,6 +22,7 @@ public:
 signals:
 
     void CapturingStateChanged(bool started);
+    void DataBaseUpdated();
 
 private slots:
 

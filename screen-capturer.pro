@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     DataBase.cpp \
+    SqlImageTableModel.cpp \
     captureworker.cpp \
     controller.cpp \
     main.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     DataBase.h \
+    SqlImageTableModel.h \
     captureworker.h \
     controller.h \
     mainwindow.h \

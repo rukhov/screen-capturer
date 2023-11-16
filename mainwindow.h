@@ -5,6 +5,8 @@
 
 #include <QMainWindow>
 #include <QPushButton>
+#include <QListWidget>
+#include "SqlImageTableModel.h"
 
 class MainWindow : public QMainWindow
 {
@@ -12,6 +14,8 @@ class MainWindow : public QMainWindow
 
     Controller& m_controller;
     QPushButton m_startStopButton;
+    QListView m_dbView;
+    SqlImageTableModel m_tableModel;
 
 public:
     MainWindow(Controller& controller);
@@ -20,6 +24,7 @@ public:
 private slots:
 
     void onCapturingStateChanged(bool started);
+    void onDataBaseUpdated();
 
 private:
 
