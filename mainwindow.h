@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "Controller.h"
+#include "controller.h"
 
 #include <QMainWindow>
 #include <QPushButton>
@@ -23,8 +23,9 @@ public:
 
 private slots:
 
-    void onCapturingStateChanged(bool started);
+    void onCapturingStateChanged(bool);
     void onDataBaseUpdated();
+    void onError(QString err);
 
 private:
 

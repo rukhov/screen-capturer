@@ -40,8 +40,7 @@ void DataBase::Connect()
 
         if(!query.exec())
         {
-            qDebug() << "Error: failed to create table: " << query.lastError().text();
-            return;
+            emit Error("Failed to create table: " + query.lastError().text());
         }
     }
 }
@@ -60,11 +59,8 @@ void DataBase::AddScreenShot(const ScreenShot& shot)
 
     if(!query.exec())
     {
-        qDebug() << "Error: failed to inset screenshot: " << query.lastError().text();
-        return;
+        emit Error("Failed to add new screenshot.");
     }
-
-    qDebug() << "Success: screenshot inserted OK; size: " << shot.pngImage.size();
 }
 
 QByteArray DataBase::GetLastCapturedImage()
@@ -77,7 +73,7 @@ QByteArray DataBase::GetLastCapturedImage()
 
     if(!query.exec())
     {
-        qDebug() << "Error: failed to get latest screenshot: " << query.lastError().text();
+        emit Error("Failed to exec select statement.");
         return {};
     }
 

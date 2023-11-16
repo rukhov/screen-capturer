@@ -5,8 +5,10 @@
 
 #include <QSqlDatabase>
 
-class DataBase
+class DataBase : public QObject
 {
+    Q_OBJECT
+
     QSqlDatabase m_db;
 
 public:
@@ -17,6 +19,11 @@ public:
     void Connect();
     void AddScreenShot(const ScreenShot& shot);
     QByteArray GetLastCapturedImage();
+
+signals:
+
+    void Error(QString err);
+
 };
 
 

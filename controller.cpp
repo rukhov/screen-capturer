@@ -5,6 +5,7 @@ Controller::Controller()
 {
     connect(&m_workerThread, &QThread::started, this, &Controller::onStarted);
     connect(&m_workerThread, &QThread::finished, this, &Controller::onFinished);
+    connect(&m_dataBase, &DataBase::Error, this, &Controller::onDataBaseError);
 
     m_dataBase.Connect();
 }
@@ -56,11 +57,16 @@ void Controller::onFinished()
 
 void Controller::onCaptureWorkerError(QString err)
 {
-
+    emit Error("CaptureWorker error: " + err);
 }
 
 void Controller::onNewScreenshotCaptured(const ScreenShot& shot)
 {
     m_dataBase.AddScreenShot(shot);
     emit DataBaseUpdated();
+}
+
+void Controller::onDataBaseError(QString err)
+{
+    emit Error("DataBase error: " + err);
 }

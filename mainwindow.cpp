@@ -2,6 +2,8 @@
 
 #include <QGridLayout>
 #include <QListWidget>
+#include <QMessageBox>
+#include <QCoreApplication>
 
 MainWindow::MainWindow(Controller& controller)
     : QMainWindow(nullptr)
@@ -19,6 +21,7 @@ MainWindow::MainWindow(Controller& controller)
     connect(&m_startStopButton, &QPushButton::clicked, this, &MainWindow::onStartStopClicked);
     connect(&m_controller, &Controller::CapturingStateChanged, this, &MainWindow::onCapturingStateChanged);
     connect(&m_controller, &Controller::DataBaseUpdated, this, &MainWindow::onDataBaseUpdated);
+    connect(&m_controller, &Controller::Error, this, &MainWindow::onError);
 
     m_tableModel.setTable("screenshots");
     m_tableModel.setSort(0, Qt::SortOrder::DescendingOrder);
@@ -58,7 +61,7 @@ void MainWindow::UpdateUIState()
     m_tableModel.select();
 }
 
-void MainWindow::onCapturingStateChanged(bool started)
+void MainWindow::onCapturingStateChanged(bool)
 {
     Q_ASSERT(thread()->currentThreadId() == QThread::currentThreadId());
 
@@ -68,4 +71,12 @@ void MainWindow::onCapturingStateChanged(bool started)
 void MainWindow::onDataBaseUpdated()
 {
     UpdateUIState();
+}
+
+void MainWindow::onError(QString err)
+{
+    QMessageBox msgBox(this);
+    msgBox.setText(err + "\nApplication will be terminated.");
+    msgBox.exec();
+    QCoreApplication::quit();
 }

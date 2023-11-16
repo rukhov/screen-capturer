@@ -65,7 +65,11 @@ void CaptureWorker::onTimer()
 {
     QScreen *screen = QGuiApplication::primaryScreen();
 
-    Q_ASSERT(screen);
+    if(!screen)
+    {
+        emit Error("Failed to make screenshot");
+        return;
+    }
 
     ScreenShot shot;
 

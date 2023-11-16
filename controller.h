@@ -23,10 +23,12 @@ signals:
 
     void CapturingStateChanged(bool started);
     void DataBaseUpdated();
+    void Error(QString err);
 
 private slots:
 
     void onCaptureWorkerError(QString err);
+    void onDataBaseError(QString err);
     void onStarted();
     void onFinished();
     void onNewScreenshotCaptured(const ScreenShot& shot);
