@@ -1,4 +1,4 @@
-This is an evaluation project for undisclosed organization.
+This is an evaluation project.
 
 - build:
 Open app project screen-capturer.pro in QtCreator and build.
